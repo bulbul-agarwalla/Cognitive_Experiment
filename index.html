@@ -181,12 +181,12 @@
   }
   function averageRT(arr) {
     const values=arr.map(x=>x.mainRT).filter(Number.isFinite);
-    return values.length ? Math.round(values.reduce((a,b)=>a+b,0)/values.length) : '';
+    return values.length ? Number((values.reduce((a,b)=>a+b,0)/values.length).toFixed(3)) : '';
   }
   function exportResults() {
     const data=getSaved(), contacts=new Map(getContacts().map(c=>[c.participantId,c.email]));
     if (!data.length) { alert('No completed sessions have been saved yet.'); return; }
-    const headers=['participant_id','age','course','gender','email','low_distraction_accuracy_percent','high_distraction_accuracy_percent','low_distraction_average_reaction_time_ms','high_distraction_average_reaction_time_ms','prospective_memory_hits','prospective_memory_misses','false_alarms'];
+    const headers=['participant_id','age','course','gender','email','low_distraction_accuracy_percent','high_distraction_accuracy_percent','low_distraction_average_reaction_time_seconds','high_distraction_average_reaction_time_seconds','prospective_memory_hits','prospective_memory_misses','false_alarms'];
     const rows=data.map(r=>{const l=r.conditions.low,h=r.conditions.high;return [r.participantId,r.age,r.course,r.gender,contacts.get(r.participantId)||'',l.mainAccuracy,h.mainAccuracy,l.averageRT,h.averageRT,l.pmHits+h.pmHits,l.pmMisses+h.pmMisses,l.falseAlarms+h.falseAlarms];});
     downloadCSV('shape_sentinel_participant_summary.csv',headers,rows);
   }
@@ -198,7 +198,7 @@
   function exportTrials() {
     const data=getSaved();
     if (!data.length) { alert('No completed trial-level data have been saved yet.'); return; }
-    const headers=['participant_id','trial_number','experimental_condition','presented_shape','shape_colour','shape_identification_response','shape_response_accuracy','shape_reaction_time_ms','is_prospective_memory_target','key_1_pressed','prospective_memory_reaction_time_ms','prospective_memory_outcome'];
+    const headers=['participant_id','trial_number','experimental_condition','presented_shape','shape_colour','shape_identification_response','shape_response_accuracy','shape_reaction_time_seconds','is_prospective_memory_target','key_1_pressed','prospective_memory_reaction_time_seconds','prospective_memory_outcome'];
     const rows=[];
     data.forEach(r=>['low','high'].forEach(condition=>(r.trialData[condition]||[]).forEach((t,i)=>rows.push([r.participantId,i+1,condition,t.shape,t.colorName,t.mainResponse?t.mainResponse.toUpperCase():'',t.mainAccuracy?'correct':(t.mainResponse?'incorrect':'no response'),t.mainRT??'',t.target?'yes':'no',t.pmRT!==null?'yes':'no',t.pmRT??'',t.pmOutcome]))));
     downloadCSV('shape_sentinel_trial_level_data.csv',headers,rows);
@@ -290,7 +290,7 @@
     if(!accepting)return;
     const k=e.key.toLowerCase();
     if(['f','j','k','1'].includes(k))e.preventDefault();
-    const elapsed=Math.round(performance.now()-trialStart);
+    const elapsed=Number(((performance.now()-trialStart)/1000).toFixed(3));
     if(['f','j','k'].includes(k)&&mainResponse===null){mainResponse=k;mainRT=elapsed;}
     if(k==='1'&&pmRT===null)pmRT=elapsed;
   }
@@ -310,7 +310,7 @@
     const record={participantId:participant.participantId,age:participant.age,course:participant.course,gender:participant.gender,order:[...order],conditions:{low,high},trialData:{low:conditionResults.low,high:conditionResults.high},completedAt:new Date().toISOString()};
     const contact={participantId:participant.participantId,email:participant.email};
     try{saveRecord(record,contact);}catch(err){alert(err.message);showScreen('intro');return;}
-    $('scoreSummary').innerHTML=`<div class="scorebox"><span class="muted">Low-distraction shape accuracy</span><strong>${low.mainAccuracy}%</strong><span class="small muted">Average RT: ${low.averageRT||'—'} ms</span></div><div class="scorebox"><span class="muted">High-distraction shape accuracy</span><strong>${high.mainAccuracy}%</strong><span class="small muted">Average RT: ${high.averageRT||'—'} ms</span></div><div class="scorebox"><span class="muted">Prospective memory</span><strong>${low.pmHits+high.pmHits} hits · ${low.pmMisses+high.pmMisses} misses</strong><span class="small muted">False alarms: ${low.falseAlarms+high.falseAlarms}</span></div>`;
+    $('scoreSummary').innerHTML=`<div class="scorebox"><span class="muted">Low-distraction shape accuracy</span><strong>${low.mainAccuracy}%</strong><span class="small muted">Average RT: ${low.averageRT||'—'} s</span></div><div class="scorebox"><span class="muted">High-distraction shape accuracy</span><strong>${high.mainAccuracy}%</strong><span class="small muted">Average RT: ${high.averageRT||'—'} s</span></div><div class="scorebox"><span class="muted">Prospective memory</span><strong>${low.pmHits+high.pmHits} hits · ${low.pmMisses+high.pmMisses} misses</strong><span class="small muted">False alarms: ${low.falseAlarms+high.falseAlarms}</span></div>`;
     showScreen('finished');
   }
   function resetForNext(){
