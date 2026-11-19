@@ -9,7 +9,7 @@ create table if not exists public.participant_summaries (
   age smallint not null check (age between 18 and 100),
   course text not null check (char_length(course) between 1 and 200),
   gender text not null check (char_length(gender) between 1 and 80),
-  condition_order text[] not null,
+  condition_order jsonb not null check (pg_catalog.jsonb_typeof(condition_order) = 'array'),
   low_distraction_accuracy_percent numeric(5,2) not null,
   high_distraction_accuracy_percent numeric(5,2) not null,
   low_distraction_average_reaction_time_seconds numeric(8,3),
@@ -157,7 +157,7 @@ begin
     prospective_memory_hits,prospective_memory_misses,false_alarms,completed_at
   ) values (
     v_id,v_submission_id,(payload->>'age')::smallint,payload->>'course',payload->>'gender',
-    array(select pg_catalog.jsonb_array_elements_text(payload->'condition_order')),
+    payload->'condition_order',
     v_low_accuracy,v_high_accuracy,v_low_rt,v_high_rt,
     v_low_hits+v_high_hits,v_low_misses+v_high_misses,v_low_false_alarms+v_high_false_alarms,
     coalesce((payload->>'completed_at')::timestamptz,pg_catalog.now())
