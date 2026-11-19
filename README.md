@@ -5,7 +5,7 @@ A neutral browser-based shape identification task with low- and high-distraction
 ## Supabase setup
 
 1. Create a Supabase project.
-2. In the Supabase Dashboard, open **SQL Editor**, create a query, paste the contents of [`supabase/setup.sql`](supabase/setup.sql), and run it once. It creates the summary, private contacts, and trial tables plus a validated submission function.
+2. In the Supabase Dashboard, open **SQL Editor**, create a query, paste the contents of [`supabase/setup.sql`](supabase/setup.sql), and run it. It creates the summary, private contacts, and trial tables plus a validated submission function. The script also migrates `condition_order` from the earlier `text[]` type when rerun on an existing project.
 3. The site sends completed sessions to the Supabase RPC endpoint using the public publishable key. Tables have RLS enabled and direct table access is revoked for public roles. Never put a Supabase secret/service-role key in the website.
 
 ## Deploy

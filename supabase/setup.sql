@@ -20,6 +20,11 @@ create table if not exists public.participant_summaries (
   completed_at timestamptz not null
 );
 
+-- Migrate projects created with the earlier text[] version of condition_order.
+alter table public.participant_summaries
+  alter column condition_order type jsonb
+  using pg_catalog.to_jsonb(condition_order);
+
 create unique index if not exists participant_summaries_participant_id_lower_key on public.participant_summaries (lower(participant_id));
 
 create table if not exists public.participant_contacts (
