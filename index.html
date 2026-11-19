@@ -1,43 +1,329 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Shape Sentinel – Prospective Memory Experiment</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shape Sentinel — Prospective Memory Task</title>
 <style>
-:root{--bg:#f5f6f4;--paper:#fff;--ink:#232a2f;--muted:#68737a;--line:#dce1de;--accent:#3c5552;--soft:#edf1ef;--focus:#839d98}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}header{height:66px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100vw - 1080px)/2),24px)}.brand{font-size:15px;font-weight:650;letter-spacing:.01em}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:5px 10px}main{max-width:960px;margin:42px auto;padding:0 24px}.intro{margin-bottom:24px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-weight:650;font-size:11px;color:var(--muted)}h1{font-size:30px;letter-spacing:-.035em;line-height:1.2;margin:7px 0 8px}p{margin:0;color:#566168}.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px;margin:18px 0;box-shadow:0 2px 8px #17282108}.card h2{font-size:17px;margin:0 0 6px}.card .sub{font-size:14px;color:var(--muted);margin-bottom:20px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}.field input,.field select{width:100%;height:43px;padding:0 12px;border:1px solid #cbd3cf;border-radius:7px;background:#fff;color:var(--ink);font:inherit}.field input:focus,.field select:focus{outline:2px solid #b5c9c4;border-color:var(--focus)}.actions{display:flex;align-items:center;gap:12px;margin-top:21px}.btn{border:1px solid var(--accent);background:var(--accent);color:white;padding:11px 17px;border-radius:7px;font:600 14px/1.4 system-ui,sans-serif;cursor:pointer}.btn:hover{background:#304744}.btn.secondary{background:white;color:var(--ink);border-color:var(--line)}.btn:disabled{opacity:.45;cursor:not-allowed}.note{font-size:12px;color:var(--muted)}.instructions{display:grid;grid-template-columns:1fr 1fr;gap:14px}.keybox{background:var(--soft);padding:14px;border-radius:8px;font-size:14px}.key{font-weight:700;border:1px solid #c6d0cc;background:#fff;border-radius:5px;padding:2px 8px;margin-right:6px}.hidden{display:none!important}.stage{text-align:center}.progressline{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:18px}.stimulus{height:420px;background:#fafbfa;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;position:relative;overflow:hidden}.shape{width:92px;height:92px;position:absolute}.circle{border-radius:50%}.square{border-radius:4px}.triangle{width:0!important;height:0!important;background:transparent!important;border-left:46px solid transparent;border-right:46px solid transparent;border-bottom:92px solid var(--shape-color)}.shape.circle,.shape.square{background:var(--shape-color)}.central{left:50%;top:50%;transform:translate(-50%,-50%)}.distractor{width:92px;height:92px}.pos1{left:20%;top:19%}.pos2{right:20%;top:19%}.pos3{left:20%;bottom:19%}.pos4{right:20%;bottom:19%}.stim-caption{color:var(--muted);font-size:13px;margin-top:12px}.trial-feedback{height:25px;color:var(--muted);font-size:13px;margin-top:8px}.results-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.stat{background:var(--soft);border-radius:8px;padding:12px 14px;min-width:130px}.stat strong{display:block;font-size:20px}.stat span{font-size:12px;color:var(--muted)}.downloads{display:flex;gap:10px;flex-wrap:wrap}.notice{padding:12px 14px;background:#f4f1e9;border:1px solid #e5ddc9;border-radius:8px;font-size:13px;color:#625943}.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:#89918e;font-size:12px;padding:16px 0 40px}@media(max-width:650px){main{margin:26px auto;padding:0 16px}.grid,.instructions{grid-template-columns:1fr}.card{padding:20px}.stimulus{height:360px}.shape{width:72px;height:72px}.triangle{border-left-width:36px;border-right-width:36px;border-bottom-width:72px}.distractor{width:72px;height:72px}header{padding:0 16px}}
-</style></head>
-<body><header><div class="brand">Shape Sentinel</div><div class="tag">Research experiment</div></header><main>
-<div class="intro"><div class="eyebrow">Prospective memory study</div><h1>Shape Sentinel</h1><p>A brief task about visual attention and remembering an additional rule.</p></div>
-<section id="setup" class="card"><h2>Participant details</h2><div class="sub">Required details are stored separately from trial-level research responses in this browser.</div><div class="grid"><div class="field"><label for="age">Age</label><input id="age" type="number" min="18" max="120" required></div><div class="field"><label for="course">Course</label><input id="course" required></div><div class="field"><label for="gender">Gender</label><select id="gender" required><option value="">Select</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Self-describe</option><option>Prefer not to say</option></select></div><div class="field"><label for="email">Email</label><input id="email" type="email" required></div></div><div class="actions"><button id="begin" class="btn">Continue to instructions</button><span class="note">Your participant ID will be generated automatically.</span></div></section>
-<section id="instructions" class="card hidden"><h2>Task instructions</h2><div class="sub">Respond to the shape in the centre as quickly and accurately as you can.</div><div class="instructions"><div class="keybox"><span class="key">F</span> Circle</div><div class="keybox"><span class="key">J</span> Square</div><div class="keybox"><span class="key">K</span> Triangle</div><div class="keybox"><span class="key">1</span> Also press for every blue triangle</div></div><p style="margin-top:16px;font-size:14px">Some trials show only the central shape. Other trials show four surrounding shapes. Ignore the surrounding shapes and respond only to the centre. Press <b>1</b> as well as the shape key whenever the central shape is a blue triangle. Trials advance automatically; please respond before each shape disappears.</p><div class="notice" style="margin-top:16px">The task saves your responses and reaction times in this browser. Contact details are kept in a separate local record. Downloaded summary files include the requested participant details; raw trial data use participant IDs only.</div><div class="actions"><button id="start" class="btn">Start experiment</button></div></section>
-<section id="experiment" class="card hidden"><div class="progressline"><span id="conditionLabel">Low distraction</span><span id="trialCount">Trial 1 of 1</span></div><div class="stimulus" id="stimulus" aria-label="Experiment stimulus"></div><div class="stim-caption" id="stimCaption">Focus on the central shape</div><div class="trial-feedback" id="feedback"></div></section>
-<section id="results" class="card hidden"><h2>Experiment complete</h2><div class="sub">Your results have been saved in this browser. Record your participant ID for reference.</div><div class="results-row" id="resultStats"></div><div class="actions downloads"><button id="downloadSummary" class="btn">Download Participant Summary CSV</button><button id="downloadRaw" class="btn secondary">Download Trial-Level Raw Data CSV</button></div><p class="small" id="savedNotice" style="margin-top:16px"></p></section>
-<section id="dataPanel" class="card"><h2>Researcher data exports</h2><div class="sub">Export all saved participants from this browser. Research responses and contact records are stored separately.</div><div class="actions downloads"><button id="allSummary" class="btn secondary">Export all participant summaries</button><button id="allRaw" class="btn secondary">Export all trial data</button></div><p class="small" id="participantCount" style="margin-top:12px"></p></section>
-<footer>Shape Sentinel · Responses are stored locally in this browser</footer></main>
+  :root { --ink:#1f2937; --muted:#667085; --line:#e5e7eb; --panel:#f8fafc; --blue:#415b57; --green:#16845b; --red:#a5534d; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#f4f5f3; color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.45; }
+  .wrap { width:min(900px, calc(100% - 28px)); margin:26px auto; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:0 5px 20px rgba(15,23,42,.05); }
+  h1 { margin:0 0 6px; font-size:clamp(25px,4vw,34px); }
+  h2 { margin:0 0 12px; font-size:22px; }
+  p { margin:8px 0 14px; }
+  .muted { color:var(--muted); }
+  .tag { display:inline-block; background:#e8eeeb; color:#3b514d; padding:5px 10px; border-radius:999px; font-size:12px; font-weight:bold; margin-bottom:12px; }
+  .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  label { display:block; font-weight:600; font-size:14px; margin-bottom:6px; }
+  input, select { width:100%; border:1px solid #cbd5e1; border-radius:9px; padding:11px 12px; font-size:15px; background:#fff; }
+  input:focus, select:focus { outline:2px solid #c6d5d0; border-color:var(--blue); }
+  .field { margin:10px 0; }
+  .btn { border:0; background:var(--blue); color:#fff; border-radius:10px; padding:12px 18px; font-size:15px; font-weight:700; cursor:pointer; }
+  .btn:hover { filter:brightness(.95); }
+  .btn.secondary { background:#e8edeb; color:#26312f; }
+  .btn.danger { background:#b42318; }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .note { background:#f8fafc; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px; }
+  .rules { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:16px 0; }
+  .rule { border:1px solid var(--line); background:var(--panel); border-radius:12px; padding:12px; }
+  .key { display:inline-block; border:1px solid #cbd5e1; border-bottom-width:3px; border-radius:6px; padding:2px 8px; background:white; font-weight:bold; }
+  .stage { text-align:center; min-height:400px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .stage-top { width:100%; display:flex; justify-content:space-between; gap:10px; font-size:13px; color:var(--muted); margin-bottom:22px; }
+  .stimulus-area { position:relative; width:min(430px, 100%); height:270px; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:16px; background:#fcfdff; overflow:hidden; }
+  #stimulus { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+  .shape-svg { position:absolute; width:92px; height:92px; z-index:1; }
+  .central { z-index:2; left:50%; top:50%; transform:translate(-50%,-50%); }
+  .distractor { z-index:1; }
+  .d1 { top:22px; left:28px; } .d2 { top:22px; right:28px; } .d3 { bottom:22px; left:28px; } .d4 { bottom:22px; right:28px; }
+  .fixation { font-size:58px; font-weight:300; color:#344054; }
+  .progress { height:8px; background:#e8edf3; border-radius:99px; overflow:hidden; width:100%; margin-top:18px; }
+  .progress > div { height:100%; background:var(--blue); width:0%; transition:width .15s; }
+  .live-help { color:var(--muted); font-size:14px; margin-top:14px; }
+  .score { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:16px 0; }
+  .scorebox { background:var(--panel); border:1px solid var(--line); padding:14px; border-radius:12px; }
+  .scorebox strong { display:block; font-size:25px; margin-top:4px; }
+  .small { font-size:12px; }
+  .hidden { display:none !important; }
+  .checkbox { display:flex; gap:9px; align-items:flex-start; font-weight:400; font-size:14px; }
+  .checkbox input { width:auto; margin-top:4px; }
+  .admin { margin-top:18px; border-top:1px solid var(--line); padding-top:16px; }
+  @media (max-width:620px) { .grid,.rules,.score { grid-template-columns:1fr; } .card { padding:18px; } .stage { min-height:360px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="intro" class="card">
+    <div class="tag">Classroom cognitive experiment</div>
+    <h1>Shape Sentinel</h1>
+    <p class="muted">A simple task designed to study <strong>prospective memory</strong> — remembering to carry out an intended action when a particular event happens.</p>
+    <div class="note"><strong>Participant task:</strong> Identify the shape shown in the centre of the screen. Also remember to press <strong>1</strong> whenever the central shape is a <strong>blue triangle</strong>, as well as the triangle key.</div>
+    <h2 style="margin-top:22px">Participant details</h2>
+    <div class="grid">
+      <div class="field"><label for="pid">Participant ID (e.g., P01)</label><input id="pid" placeholder="P01" maxlength="12" /></div>
+      <div class="field"><label for="age">Age (18 or above)</label><input id="age" type="number" min="18" max="100" placeholder="19" /></div>
+      <div class="field"><label for="course">Course / programme</label><input id="course" placeholder="BSc Psychology" /></div>
+      <div class="field"><label for="gender">Gender</label><select id="gender"><option value="">Select</option><option>Female</option><option>Male</option><option>Non-binary</option><option>Prefer to self-describe</option><option>Prefer not to say</option></select></div>
+      <div class="field" style="grid-column:1/-1"><label for="email">Email address (kept separate from the analysis export)</label><input id="email" type="email" placeholder="participant@example.com" /></div>
+    </div>
+    <label class="checkbox"><input id="consent" type="checkbox" /> <span>I am 18 or older, I have read the task description, and I agree to take part voluntarily. I understand I can stop at any time.</span></label>
+    <h2 style="margin-top:22px">Instructions</h2>
+    <div class="rules">
+      <div class="rule"><strong>1. Identify the shape</strong><p><span class="key">F</span> = circle</p><p><span class="key">J</span> = square</p><p><span class="key">K</span> = triangle</p></div>
+      <div class="rule"><strong>2. Remember the special rule</strong><p>Whenever the <strong>central shape is a blue triangle</strong>, press <span class="key">1</span> as well as <span class="key">K</span>.</p></div>
+    </div>
+    <p class="muted small">There are two rounds. In one round, only the central shape appears. In the other, four coloured shapes appear around it. Ignore the surrounding shapes and respond only to the central coloured target. The order of the rounds is alternated by participant ID.</p>
+    <div class="note"><strong>Timing:</strong> Each shape appears briefly. The complete task takes about 4–6 minutes, including practice.</div>
+    <div class="actions"><button class="btn" id="startPractice">Start practice</button></div>
+    <div class="admin">
+      <strong>Researcher: export saved data</strong>
+      <p class="muted small">Completed participant sessions are saved in this browser. Export the files after data collection and keep the contact file private.</p>
+      <div class="actions">
+        <button class="btn secondary" id="exportResults">Download anonymised results CSV</button>
+        <button class="btn secondary" id="exportContacts">Download contact list CSV</button>
+        <button class="btn secondary" id="exportTrials">Download trial-level data CSV</button>
+        <button class="btn danger" id="clearData">Clear saved data</button>
+      </div>
+      <p id="savedCount" class="muted small"></p>
+    </div>
+  </section>
+
+  <section id="instructions" class="card hidden">
+    <div class="tag" id="roundTag">Practice</div>
+    <h2 id="instructionTitle">Practice round</h2>
+    <p id="instructionText">Use F for circles and J for triangles or squares. Also press 1 whenever you see a blue triangle.</p>
+    <div class="note">Respond while the shape is on screen. For a blue triangle, press <strong>K and 1</strong>. Try the practice first; practice results are not saved.</div>
+    <div class="actions"><button class="btn" id="beginRound">Begin</button></div>
+  </section>
+
+  <section id="task" class="card hidden">
+    <div class="stage">
+      <div class="stage-top"><span id="conditionLabel">Condition</span><span id="trialLabel">Trial 1 of 30</span></div>
+      <div id="stimulusArea" class="stimulus-area"><div id="fixation" class="fixation">+</div><div id="stimulus" class="hidden"></div></div>
+      <div class="live-help" id="liveHelp">Use F for a circle, J for a square, K for a triangle, and 1 for a blue triangle.</div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <p class="muted small" id="keyStatus">Responses are recorded only while a shape is visible.</p>
+    </div>
+  </section>
+
+  <section id="break" class="card hidden">
+    <div class="tag">Short break</div>
+    <h2>First round completed</h2>
+    <p>Take a short break. Remember the special instruction: press 1 whenever the central shape is a blue triangle, as well as K.</p>
+    <div class="actions"><button class="btn" id="continueRound">Continue to second round</button></div>
+  </section>
+
+  <section id="practiceDone" class="card hidden">
+    <div class="tag">Practice completed</div>
+    <h2>Ready for the actual task?</h2>
+    <p>The practice round is finished. The real task has two rounds of 30 shapes each. Try to be both accurate and quick.</p>
+    <div class="actions"><button class="btn" id="startActual">Start actual task</button></div>
+  </section>
+
+  <section id="finished" class="card hidden">
+    <div class="tag">Completed</div>
+    <h1>Thank you</h1>
+    <p>Your session has been saved in this browser.</p>
+    <div class="score" id="scoreSummary"></div>
+    <div class="note"><strong>Researcher:</strong> Use the export buttons on the first screen to download the anonymised results and the separate contact list. Keep the contact list private. Do not include email addresses in your report.</div>
+    <div class="actions"><button class="btn" id="newParticipant">Next participant</button><button class="btn secondary" id="backToExport">Go to data export</button></div>
+  </section>
+</div>
 <script>
-(()=>{
-const COLORS=['#4776a8','#c96957','#6a8f70','#d1a843','#8067a8','#4e9a9b'];
-const shapes=['circle','square','triangle']; const keyFor={circle:'f',square:'j',triangle:'k'};
-const TOTAL_PER_CONDITION=20, WINDOW_MS=2800;
-const $=id=>document.getElementById(id);
-let participantId='',participant={},trials=[],index=0,current=null,startedAt=0,shapeResponse=null,pmResponse=null,timer=null,accepting=false,session=[];
-const KEYS={contacts:'shapeSentinel_contacts_v1',research:'shapeSentinel_research_v1'};
-function read(key){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return []}}
-function write(key,val){localStorage.setItem(key,JSON.stringify(val))}
-function show(id){$(id).classList.remove('hidden')} function hide(id){$(id).classList.add('hidden')}
-function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function buildTrials(){const list=[];for(const condition of ['Low-distraction','High-distraction']){let entries=[];for(let i=0;i<TOTAL_PER_CONDITION;i++){const shape=shapes[Math.floor(Math.random()*shapes.length)];const color=COLORS[Math.floor(Math.random()*COLORS.length)];entries.push({condition,shape,color,isPMTarget:shape==='triangle'&&color===COLORS[0]})} // guarantee equal PM targets, exactly five per condition
-for(let i=0;i<5;i++){entries[i]={condition,shape:'triangle',color:COLORS[0],isPMTarget:true}}
-for(let i=5;i<entries.length;i++){if(entries[i].isPMTarget){let s=shapes[Math.floor(Math.random()*2)];entries[i]={condition,shape:s,color:COLORS[1+Math.floor(Math.random()*(COLORS.length-1))],isPMTarget:false}}}
-shuffle(entries); list.push(...entries)}return shuffle(list)}
-function drawTrial(t){const box=$('stimulus');box.innerHTML='';const center=document.createElement('div');center.className=`shape ${t.shape} central`;center.style.setProperty('--shape-color',t.color);center.setAttribute('aria-label',`${t.color} ${t.shape}`);box.appendChild(center);if(t.condition==='High-distraction'){const distractors=shuffle(shapes.filter(s=>s!==t.shape));const positions=['pos1','pos2','pos3','pos4'];for(let i=0;i<4;i++){const el=document.createElement('div');el.className=`shape distractor ${distractors[i%2]} ${positions[i]}`;const color=COLORS.filter(c=>c!==t.color)[(i+Math.floor(Math.random()*5))%5];el.style.setProperty('--shape-color',color);box.appendChild(el)}}}
-function startTrial(){if(index>=trials.length){finish();return}current=trials[index];shapeResponse=null;pmResponse=null;accepting=true; $('conditionLabel').textContent=current.condition; $('trialCount').textContent=`Trial ${index+1} of ${trials.length}`;$('feedback').textContent='';$('stimCaption').textContent=current.condition==='High-distraction'?'Respond only to the central shape':'Focus on the central shape';drawTrial(current);startedAt=performance.now();timer=setTimeout(endTrial,WINDOW_MS)}
-function keydown(e){if(!accepting)return;const k=e.key.toLowerCase();if(['f','j','k','1'].includes(k))e.preventDefault();const elapsed=Math.round(performance.now()-startedAt);if(k==='1'&&!pmResponse){pmResponse=elapsed;return}if(['f','j','k'].includes(k)&&!shapeResponse){shapeResponse={key:k,rt:elapsed};}}
-function endTrial(){if(!accepting)return;accepting=false;clearTimeout(timer);const correctKey=keyFor[current.shape];const shapeCorrect=shapeResponse?.key===correctKey;const pmOutcome=current.isPMTarget?(pmResponse!==null?'hit':'miss'):(pmResponse!==null?'false alarm':'');const row={participantId,trialNumber:index+1,condition:current.condition,presentedShape:current.shape,shapeColour:current.color,shapeIdentificationResponse:shapeResponse?.key.toUpperCase()||'',shapeCorrect:shapeResponse?(shapeCorrect?'correct':'incorrect'):'no response',shapeReactionTimeMs:shapeResponse?.rt??'',isProspectiveMemoryTarget:current.isPMTarget?'yes':'no',key1Pressed:pmResponse!==null?'yes':'no',prospectiveMemoryReactionTimeMs:pmResponse??'',prospectiveMemoryOutcome:pmOutcome};session.push(row);$('feedback').textContent=shapeResponse?(shapeCorrect?'Response recorded':'Response recorded'):'No shape response recorded';index++;setTimeout(startTrial,350)}
-function finish(){hide('experiment');show('results');const rows=session;const agg=summaryFrom(participantId,participant,rows);const datasets=read(KEYS.research);datasets.push({participantId,summary:agg,trials:rows,completedAt:new Date().toISOString()});write(KEYS.research,datasets);const contacts=read(KEYS.contacts);contacts.push({participantId,...participant,completedAt:new Date().toISOString()});write(KEYS.contacts,contacts);$('resultStats').innerHTML=`<div class="stat"><strong>${participantId}</strong><span>Participant ID</span></div><div class="stat"><strong>${agg.lowDistractionAccuracyPercent}%</strong><span>Low-distraction accuracy</span></div><div class="stat"><strong>${agg.highDistractionAccuracyPercent}%</strong><span>High-distraction accuracy</span></div><div class="stat"><strong>${agg.prospectiveMemoryHits}</strong><span>Prospective hits</span></div>`;$('savedNotice').textContent=`Saved ${rows.length} trial records. Current browser contains ${datasets.length} completed participant${datasets.length===1?'':'s'}.`;refreshCount();$('downloadSummary').onclick=()=>downloadCSV('shape-sentinel-participant-summary.csv',[agg]);$('downloadRaw').onclick=()=>downloadCSV('shape-sentinel-trial-data.csv',rows)}
-function summaryFrom(id,p,rows){const cond=c=>rows.filter(r=>r.condition===c), accuracy=a=>a.length?Math.round(a.filter(r=>r.shapeCorrect==='correct').length/a.length*100):0, avg=a=>{const v=a.map(r=>Number(r.shapeReactionTimeMs)).filter(Number.isFinite);return v.length?Math.round(v.reduce((x,y)=>x+y,0)/v.length):''};return {participantId:id,age:p.age,course:p.course,gender:p.gender,email:p.email,lowDistractionAccuracyPercent:accuracy(cond('Low-distraction')),highDistractionAccuracyPercent:accuracy(cond('High-distraction')),lowDistractionAverageReactionTimeMs:avg(cond('Low-distraction')),highDistractionAverageReactionTimeMs:avg(cond('High-distraction')),prospectiveMemoryHits:rows.filter(r=>r.prospectiveMemoryOutcome==='hit').length,prospectiveMemoryMisses:rows.filter(r=>r.prospectiveMemoryOutcome==='miss').length,falseAlarms:rows.filter(r=>r.prospectiveMemoryOutcome==='false alarm').length}}
-function downloadCSV(filename,rows){if(!rows.length){alert('There is no saved data to export yet.');return}const cols=Object.keys(rows[0]);const esc=v=>{let s=String(v??'');if(/^[=+@]/.test(s))s="'"+s;return '"'+s.replaceAll('"','""')+'"'};const csv='\ufeff'+[cols.map(esc).join(','),...rows.map(r=>cols.map(c=>esc(r[c])).join(','))].join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-function refreshCount(){$('participantCount').textContent=`${read(KEYS.research).length} completed participant${read(KEYS.research).length===1?'':'s'} saved in this browser.`;const d=read(KEYS.research);$('allSummary').onclick=()=>downloadCSV('shape-sentinel-all-participant-summaries.csv',d.map(x=>x.summary));$('allRaw').onclick=()=>downloadCSV('shape-sentinel-all-trial-data.csv',d.flatMap(x=>x.trials))}
-$('begin').onclick=()=>{const age=Number($('age').value),course=$('course').value.trim(),gender=$('gender').value,email=$('email').value.trim();if(!age||age<18||age>120||!course||!gender||!email||!$('email').checkValidity()){alert('Please complete all fields with a valid email.');return}participant={age,course,gender,email};participantId='SS-'+crypto.randomUUID().split('-')[0].toUpperCase();hide('setup');show('instructions')};$('start').onclick=()=>{trials=buildTrials();index=0;session=[];hide('instructions');show('experiment');startTrial()};window.addEventListener('keydown',keydown);refreshCount();
+(() => {
+  'use strict';
+  const STORE_KEY = 'shapeSentinelResearch_v2';
+  const CONTACT_KEY = 'shapeSentinelContacts_v2';
+  const $ = id => document.getElementById(id);
+  const screens = ['intro','instructions','task','break','practiceDone','finished'];
+  const COLOR_OPTIONS = [
+    {name:'blue',color:'#4776a8'}, {name:'red',color:'#c96957'},
+    {name:'green',color:'#6a8f70'}, {name:'gold',color:'#c39b43'},
+    {name:'purple',color:'#8067a8'}, {name:'teal',color:'#4e9291'}
+  ];
+  const shapeNames = ['circle','square','triangle'];
+  const keyForShape = {circle:'f',square:'j',triangle:'k'};
+  const TARGET_COUNT = 6;
+  let participant = null, order = [], orderIndex = 0, conditionResults = {};
+  let currentCondition = '', trials = [], trialIndex = 0, activeTrial = null;
+  let accepting = false, trialStart = 0, mainResponse = null, mainRT = null;
+  let pmRT = null, timer1 = null, timer2 = null, timer3 = null, practiceMode = false;
+
+  const shapeOptions = shapeNames.flatMap(shape => COLOR_OPTIONS
+    .filter(color => !(shape === 'triangle' && color.name === 'blue'))
+    .map(color => ({shape,color:color.color,colorName:color.name,name:`${color.name} ${shape}`})));
+
+  function showScreen(id) { screens.forEach(s => $(s).classList.toggle('hidden', s !== id)); }
+  function readStore(key) { try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) { return []; } }
+  function getSaved() { return readStore(STORE_KEY); }
+  function getContacts() { return readStore(CONTACT_KEY); }
+  function idExists(id) { return getSaved().some(x => x.participantId.toLowerCase() === id.toLowerCase()); }
+  function saveRecord(record, contact) {
+    if (idExists(record.participantId)) throw new Error('This participant ID has already been used. Please use a new ID.');
+    const research = getSaved();
+    const contacts = getContacts();
+    research.push(record);
+    contacts.push(contact);
+    localStorage.setItem(STORE_KEY, JSON.stringify(research));
+    localStorage.setItem(CONTACT_KEY, JSON.stringify(contacts));
+    updateSavedCount();
+  }
+  function updateSavedCount() { $('savedCount').textContent = `${getSaved().length} completed participant session(s) saved in this browser.`; }
+  function csvCell(v) { let s=String(v ?? ''); if (/^[=+@]/.test(s)) s="'"+s; return '"'+s.replace(/"/g,'""')+'"'; }
+  function downloadCSV(filename, headers, rows) {
+    const content = [headers, ...rows].map(row => row.map(csvCell).join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF' + content], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href=url; a.download=filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  function averageRT(arr) {
+    const values=arr.map(x=>x.mainRT).filter(Number.isFinite);
+    return values.length ? Math.round(values.reduce((a,b)=>a+b,0)/values.length) : '';
+  }
+  function exportResults() {
+    const data=getSaved(), contacts=new Map(getContacts().map(c=>[c.participantId,c.email]));
+    if (!data.length) { alert('No completed sessions have been saved yet.'); return; }
+    const headers=['participant_id','age','course','gender','email','low_distraction_accuracy_percent','high_distraction_accuracy_percent','low_distraction_average_reaction_time_ms','high_distraction_average_reaction_time_ms','prospective_memory_hits','prospective_memory_misses','false_alarms'];
+    const rows=data.map(r=>{const l=r.conditions.low,h=r.conditions.high;return [r.participantId,r.age,r.course,r.gender,contacts.get(r.participantId)||'',l.mainAccuracy,h.mainAccuracy,l.averageRT,h.averageRT,l.pmHits+h.pmHits,l.pmMisses+h.pmMisses,l.falseAlarms+h.falseAlarms];});
+    downloadCSV('shape_sentinel_participant_summary.csv',headers,rows);
+  }
+  function exportContacts() {
+    const data=getContacts();
+    if (!data.length) { alert('No contact records have been saved yet.'); return; }
+    downloadCSV('shape_sentinel_private_contacts.csv',['participant_id','email'],data.map(r=>[r.participantId,r.email]));
+  }
+  function exportTrials() {
+    const data=getSaved();
+    if (!data.length) { alert('No completed trial-level data have been saved yet.'); return; }
+    const headers=['participant_id','trial_number','experimental_condition','presented_shape','shape_colour','shape_identification_response','shape_response_accuracy','shape_reaction_time_ms','is_prospective_memory_target','key_1_pressed','prospective_memory_reaction_time_ms','prospective_memory_outcome'];
+    const rows=[];
+    data.forEach(r=>['low','high'].forEach(condition=>(r.trialData[condition]||[]).forEach((t,i)=>rows.push([r.participantId,i+1,condition,t.shape,t.colorName,t.mainResponse?t.mainResponse.toUpperCase():'',t.mainAccuracy?'correct':(t.mainResponse?'incorrect':'no response'),t.mainRT??'',t.target?'yes':'no',t.pmRT!==null?'yes':'no',t.pmRT??'',t.pmOutcome]))));
+    downloadCSV('shape_sentinel_trial_level_data.csv',headers,rows);
+  }
+  function clearSaved() {
+    if (!getSaved().length && !getContacts().length) { alert('There is no saved data to clear.'); return; }
+    if (confirm('This will permanently delete all sessions and contact records saved in this browser. Export your files first. Continue?')) {
+      localStorage.removeItem(STORE_KEY); localStorage.removeItem(CONTACT_KEY); updateSavedCount(); alert('Saved sessions cleared from this browser.');
+    }
+  }
+  function shuffle(array) {
+    const a=[...array];
+    for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+    return a;
+  }
+  function svgShape(shape,color,cls='') {
+    let inner='';
+    if(shape==='circle') inner=`<circle cx="50" cy="50" r="46" fill="${color}"/>`;
+    if(shape==='square') inner=`<rect x="4" y="4" width="92" height="92" fill="${color}"/>`;
+    if(shape==='triangle') inner=`<polygon points="50,4 96,96 4,96" fill="${color}"/>`;
+    return `<svg class="shape-svg ${cls}" viewBox="0 0 100 100" role="img" aria-label="${shape}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+  }
+  function makeSequence() {
+    const nonTargets=Array.from({length:24},()=>({...shapeOptions[Math.floor(Math.random()*shapeOptions.length)],target:false}));
+    const target={shape:'triangle',color:'#4776a8',colorName:'blue',name:'blue triangle',target:true};
+    const positions=[];
+    while(positions.length<TARGET_COUNT){const p=Math.floor(Math.random()*30);if(!positions.some(x=>Math.abs(x-p)<3))positions.push(p);}
+    const targetPositions=new Set(positions);
+    let ni=0;
+    const sequence=Array.from({length:30},(_,i)=>targetPositions.has(i)?{...target}:{...nonTargets[ni++]});
+    const pool=shuffle(sequence.filter(x=>!x.target)); let p=0;
+    return sequence.map(x=>x.target?x:pool[p++]);
+  }
+  function getOrder(id) {
+    const m=id.match(/(\d+)$/), n=m?parseInt(m[1],10):1;
+    return n%2===1?['low','high']:['high','low'];
+  }
+  function startPractice() {
+    const pid=$('pid').value.trim(), age=Number($('age').value), course=$('course').value.trim(), gender=$('gender').value, email=$('email').value.trim();
+    if(!pid||!Number.isInteger(age)||age<18||age>100||!course||!gender||!email||!$('consent').checked){alert('Please complete all participant fields and tick the consent box. Participants must be 18 or older.');return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
+    if(idExists(pid)){alert('This participant ID has already completed the task. Please use a new participant ID.');return;}
+    participant={participantId:pid,age,course,gender,email}; order=getOrder(pid); orderIndex=0; conditionResults={}; practiceMode=true;
+    trials=[{shape:'circle',color:'#c96957',colorName:'red',name:'red circle',target:false},{shape:'square',color:'#6a8f70',colorName:'green',name:'green square',target:false},{shape:'triangle',color:'#4776a8',colorName:'blue',name:'blue triangle',target:true},{shape:'triangle',color:'#c39b43',colorName:'gold',name:'gold triangle',target:false}];
+    trialIndex=0; $('roundTag').textContent='Practice'; $('instructionTitle').textContent='Practice round';
+    $('instructionText').textContent='Try the rules: press F for circles, J for squares, and K for triangles. Whenever the central shape is a blue triangle, also press 1.';
+    showScreen('instructions');
+  }
+  function startActual(){practiceMode=false;orderIndex=0;conditionResults={};beginCondition();}
+  function beginCondition(){
+    currentCondition=order[orderIndex];conditionResults[currentCondition]=[];trials=makeSequence();trialIndex=0;
+    $('roundTag').textContent=currentCondition==='low'?'Low distraction':'High distraction';
+    $('instructionTitle').textContent=currentCondition==='low'?'Round: Low distraction':'Round: High distraction';
+    $('instructionText').textContent=currentCondition==='low'?'Only the central coloured shape will appear. Identify circles with F, squares with J, and triangles with K. Press 1 as well for a blue triangle.':'The central coloured target will appear with four coloured shapes around it. Ignore those shapes. Identify only the central shape using F, J, or K. Press 1 as well for a blue triangle.';
+    $('beginRound').textContent='Begin round';showScreen('instructions');
+  }
+  function beginTrials(){showScreen('task');runTrial();}
+  function drawStimulus(item){
+    const area=$('stimulus');let html='';
+    if(currentCondition==='high'&&!practiceMode){
+      const colors=shuffle(COLOR_OPTIONS.filter(c=>c.color!==item.color)).slice(0,4);
+      const shapes=shuffle(['circle','square','triangle','circle']);
+      const positions=['d1','d2','d3','d4'];
+      for(let i=0;i<4;i++)html+=svgShape(shapes[i],colors[i].color,`distractor ${positions[i]}`);
+    }
+    html+=svgShape(item.shape,item.color,'central');area.innerHTML=html;
+    area.classList.remove('hidden');$('fixation').classList.add('hidden');
+  }
+  function runTrial(){
+    if(trialIndex>=trials.length){finishCondition();return;}
+    activeTrial=trials[trialIndex];mainResponse=null;mainRT=null;pmRT=null;accepting=false;
+    $('conditionLabel').textContent=practiceMode?'Practice':(currentCondition==='low'?'Low distraction':'High distraction');
+    $('trialLabel').textContent=`Trial ${trialIndex+1} of ${trials.length}`;
+    $('progressBar').style.width=`${(trialIndex/trials.length)*100}%`;
+    $('stimulus').classList.add('hidden');$('fixation').classList.remove('hidden');$('fixation').textContent='+';
+    timer1=setTimeout(()=>{drawStimulus(activeTrial);accepting=true;trialStart=performance.now();timer2=setTimeout(()=>{
+      accepting=false;$('stimulus').classList.add('hidden');$('fixation').classList.remove('hidden');$('fixation').textContent='';
+      timer3=setTimeout(()=>{
+        const correctKey=keyForShape[activeTrial.shape], mainAccuracy=mainResponse===correctKey;
+        const pmOutcome=activeTrial.target?(pmRT!==null?'hit':'miss'):(pmRT!==null?'false alarm':'');
+        const result={shape:activeTrial.shape,colorName:activeTrial.colorName,target:!!activeTrial.target,pmHit:!!activeTrial.target&&pmRT!==null,pmMiss:!!activeTrial.target&&pmRT===null,falseAlarm:!activeTrial.target&&pmRT!==null,mainAccuracy,mainResponse,mainRT,pmRT,pmOutcome};
+        if(practiceMode){$('liveHelp').textContent=activeTrial.target?(pmRT!==null?'Correct — you remembered the additional response.':'Remember: a blue triangle also requires 1.'):(pmRT!==null?'That was not the target. Save 1 for a blue triangle.':'Good.');}
+        else conditionResults[currentCondition].push(result);
+        trialIndex++;runTrial();
+      },350);
+    },1500);},450);
+  }
+  function onKey(e){
+    if(!accepting)return;
+    const k=e.key.toLowerCase();
+    if(['f','j','k','1'].includes(k))e.preventDefault();
+    const elapsed=Math.round(performance.now()-trialStart);
+    if(['f','j','k'].includes(k)&&mainResponse===null){mainResponse=k;mainRT=elapsed;}
+    if(k==='1'&&pmRT===null)pmRT=elapsed;
+  }
+  function summarize(arr){
+    const targets=arr.filter(x=>x.target).length,hits=arr.filter(x=>x.pmHit).length;
+    const falseAlarms=arr.filter(x=>x.falseAlarm).length,mainCorrect=arr.filter(x=>x.mainAccuracy).length;
+    return {targets,pmHits:hits,pmMisses:targets-hits,pmAccuracy:targets?Math.round(hits/targets*100):0,falseAlarms,mainTrials:arr.length,mainCorrect,mainAccuracy:arr.length?Math.round(mainCorrect/arr.length*100):0,averageRT:averageRT(arr)};
+  }
+  function finishCondition(){
+    $('progressBar').style.width='100%';
+    if(practiceMode){$('liveHelp').textContent='Practice complete.';showScreen('practiceDone');return;}
+    conditionResults[currentCondition+'_summary']=summarize(conditionResults[currentCondition]);orderIndex++;
+    if(orderIndex<order.length)showScreen('break');else finishSession();
+  }
+  function finishSession(){
+    const low=conditionResults.low_summary,high=conditionResults.high_summary;
+    const record={participantId:participant.participantId,age:participant.age,course:participant.course,gender:participant.gender,order:[...order],conditions:{low,high},trialData:{low:conditionResults.low,high:conditionResults.high},completedAt:new Date().toISOString()};
+    const contact={participantId:participant.participantId,email:participant.email};
+    try{saveRecord(record,contact);}catch(err){alert(err.message);showScreen('intro');return;}
+    $('scoreSummary').innerHTML=`<div class="scorebox"><span class="muted">Low-distraction shape accuracy</span><strong>${low.mainAccuracy}%</strong><span class="small muted">Average RT: ${low.averageRT||'—'} ms</span></div><div class="scorebox"><span class="muted">High-distraction shape accuracy</span><strong>${high.mainAccuracy}%</strong><span class="small muted">Average RT: ${high.averageRT||'—'} ms</span></div><div class="scorebox"><span class="muted">Prospective memory</span><strong>${low.pmHits+high.pmHits} hits · ${low.pmMisses+high.pmMisses} misses</strong><span class="small muted">False alarms: ${low.falseAlarms+high.falseAlarms}</span></div>`;
+    showScreen('finished');
+  }
+  function resetForNext(){
+    participant=null;order=[];conditionResults={};currentCondition='';trials=[];trialIndex=0;practiceMode=false;accepting=false;
+    ['pid','age','course','gender','email'].forEach(id=>$(id).value='');$('consent').checked=false;
+    $('liveHelp').textContent='Use F for a circle, J for a square, K for a triangle, and 1 for a blue triangle.';
+    showScreen('intro');updateSavedCount();
+  }
+  document.addEventListener('keydown',onKey);
+  $('startPractice').addEventListener('click',startPractice);$('beginRound').addEventListener('click',beginTrials);$('startActual').addEventListener('click',startActual);
+  $('continueRound').addEventListener('click',beginCondition);$('newParticipant').addEventListener('click',resetForNext);$('backToExport').addEventListener('click',()=>{showScreen('intro');updateSavedCount();});
+  $('exportResults').addEventListener('click',exportResults);$('exportContacts').addEventListener('click',exportContacts);$('exportTrials').addEventListener('click',exportTrials);$('clearData').addEventListener('click',clearSaved);updateSavedCount();
 })();
-</script></body></html>
+</script>
+</body>
+</html>
