@@ -204,7 +204,7 @@
   }
   async function saveRecord(record,contact) {
     const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_experiment_session`,{
-      method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Authorization':`Bearer ${SUPABASE_PUBLISHABLE_KEY}`,'Prefer':'return=minimal'},
+      method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Prefer':'return=minimal'},
       body:JSON.stringify({payload:submissionPayload(record,contact)})
     });
     if(!response.ok){let detail='';try{detail=await response.text();}catch(_){};throw new Error(/already (been )?used|already exists|duplicate key/i.test(detail)?'This participant ID has already been used. Please use a different ID.':'The database did not accept this session. Check your connection and retry.');}
