@@ -207,7 +207,7 @@
       method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_PUBLISHABLE_KEY,'Prefer':'return=minimal'},
       body:JSON.stringify({payload:submissionPayload(record,contact)})
     });
-    if(!response.ok){let detail='';try{detail=await response.text();}catch(_){};throw new Error(/already (been )?used|already exists|duplicate key/i.test(detail)?'This participant ID has already been used. Please use a different ID.':'The database did not accept this session. Check your connection and retry.');}
+    if(!response.ok){let detail='';try{detail=await response.text();}catch(_){};console.error('Supabase session save failed',response.status,detail);throw new Error(/already (been )?used|already exists|duplicate key/i.test(detail)?'This participant ID has already been used. Please use a different ID.':`The database did not accept this session (HTTP ${response.status}). Keep this page open and retry or contact the researcher.`);}
   }
   function shuffle(array) {
     const a=[...array];
